@@ -18,6 +18,6 @@ jobs:
       with:
         subscriptionId: ${{ secrets.STO2024_SUB }}
         resourceGroupName: ${{ secrets.STO2024_RG }}
-        template: ./bicep/storagebicep
+        template: ./bicep/storage.bicep
         parameters: 'storagePrefix=stkhlm2024 storageSKU=Standard_LRS'
         failOnStdErr: false
