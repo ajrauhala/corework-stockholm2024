@@ -6,9 +6,6 @@ param location string = resourceGroup().location
 resource storage 'Microsoft.Storage/storageAccounts@2023-05-01' existing = {
   name: storageaccountName
 }
-resource appserviceplan 'Microsoft.Web/sites@2023-12-01' existing = {
-  name: appserviceplanName
-}
 
 resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
   name: appName
@@ -18,7 +15,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
     type: 'SystemAssigned'
   }
   properties: {
-    serverFarmId: appserviceplan.name
+    serverFarmId: resourceId('Microsoft.Web/serverfarms', appserviceplanName)
     siteConfig: {
       appSettings: [
         {
