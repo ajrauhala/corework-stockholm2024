@@ -14,6 +14,29 @@ module appserviceplan './modules/appserviceplan.bicep' = {
   }
 }
 
+module vnet 'modules/vnet.bicep' = {
+  name: 'vnetmodule'
+  params: {
+    addressPrefixes: ['10.0.0.0/16']
+    subnets: [
+      {
+        name: 'privateendpoints'
+        properties: {
+          addressPrefix: '10.0.0.0/24'
+        }
+      }
+      {
+        name: 'appserviceplan'
+        properties: {
+          addressPrefix: '10.0.1.0/24'
+        }
+      }
+    ]
+    virtualNetworkName: 'vnet-stockholm-2024'
+  }
+}
+
+
 module functionapp 'modules/functionapp.bicep' = {
   name: 'functionappmodule'
   params : {
