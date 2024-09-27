@@ -1,6 +1,4 @@
-@minLength(3)
-@maxLength(11)
-param storagePrefix string
+param storagename string
 
 @allowed([
   'Standard_LRS'
@@ -16,10 +14,9 @@ param storageSKU string = 'Standard_LRS'
 
 param location string = resourceGroup().location
 
-var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
 
 resource stg 'Microsoft.Storage/storageAccounts@2023-04-01' = {
-  name: uniqueStorageName
+  name: storagename
   location: location
   sku: {
     name: storageSKU
