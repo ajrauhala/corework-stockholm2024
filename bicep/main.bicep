@@ -10,7 +10,7 @@ module appserviceplan './modules/appserviceplan.bicep' = {
   name: 'appserviceplanmodule'
   params: {
     appServicePlanName: 'asp-stockholm-2024'
-    sku: 'F1'
+    sku: 'B1'
   }
 }
 
