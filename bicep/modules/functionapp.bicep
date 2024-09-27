@@ -18,7 +18,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
     type: 'SystemAssigned'
   }
   properties: {
-    serverFarmId: appserviceplan.id
+    serverFarmId: appserviceplan.name
     siteConfig: {
       appSettings: [
         {
