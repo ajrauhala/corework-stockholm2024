@@ -1,3 +1,4 @@
+var vnetName = 'vnet-stockholm-2024'
 module vnet 'modules/vnet.bicep' = {
   name: 'vnetmodule'
   params: {
@@ -16,7 +17,7 @@ module vnet 'modules/vnet.bicep' = {
         }
       }
     ]
-    virtualNetworkName: 'vnet-stockholm-2024'
+    virtualNetworkName: vnetName
   }
 }
 
@@ -25,7 +26,7 @@ module storage './modules/storage.bicep' = {
   params: {
     storagename: 'ststkhlm2024'
     storageSKU: 'Standard_LRS'
-    privateEndpointSubnetResourceId: '${vnet.outputs.virtualnetwork.id}/subnets/privateendpoints'
+    privateEndpointSubnetResourceId: '${resourceId('Microsoft.Network/VirtualNetworks', vnetName)}/subnets/privateendpoints'
     enablePublicEndpoint: false
     enablePrivateEndpoint: true
   }
@@ -53,7 +54,7 @@ module functionapp 'modules/functionapp.bicep' = {
     storageaccountName: 'ststkhlm2024'
     enablePrivateEndpoint: false
     enablePublicEndpoint: true
-    vnetIntegrationSubnetResourceId: '${vnet.outputs.virtualnetwork.id}/subnets/appserviceplan'
+    vnetIntegrationSubnetResourceId: '${resourceId('Microsoft.Network/VirtualNetworks', vnetName)}/subnets/appserviceplan'
   }
   dependsOn: [
     storage
