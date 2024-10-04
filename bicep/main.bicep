@@ -14,11 +14,24 @@ module vnet 'modules/vnet.bicep' = {
         name: 'appserviceplan'
         properties: {
           addressPrefix: '10.0.1.0/24'
+          delegations: [
+            {
+              name: 'Microsoft.Web/serverFarms'
+              properties: {
+                serviceName: 'Microsoft.Web/serverFarms'
+              }
+            }
+          ]          
         }
       }
     ]
     virtualNetworkName: vnetName
   }
+}
+
+"name": "Microsoft.Web/serverFarms",
+"properties": {
+    "serviceName": "Microsoft.Web/serverFarms"
 }
 
 module storage './modules/storage.bicep' = {
