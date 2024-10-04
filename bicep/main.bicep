@@ -29,11 +29,6 @@ module vnet 'modules/vnet.bicep' = {
   }
 }
 
-"name": "Microsoft.Web/serverFarms",
-"properties": {
-    "serviceName": "Microsoft.Web/serverFarms"
-}
-
 module storage './modules/storage.bicep' = {
   name: 'storagemodule'
   params: {
