@@ -37,15 +37,15 @@ resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01'
   parent: storage
 }
 
-module blobPrivateEndpoint './privateendpoint.bicep' = if(enablePrivateEndpoint) {
-  name: 'module-${storagename}-blobprep'
-  params: {
-    groupIds: ['blob']
-    subnetResourceId: privateEndpointSubnetResourceId
-    privateEndpointName: privateEndpointName
-    privateLinkServiceId: storage.id
-    location: location
-  }
-}
+// module blobPrivateEndpoint './privateendpoint.bicep' = if(enablePrivateEndpoint) {
+//   name: 'module-${storagename}-blobprep'
+//   params: {
+//     groupIds: ['blob']
+//     subnetResourceId: privateEndpointSubnetResourceId
+//     privateEndpointName: privateEndpointName
+//     privateLinkServiceId: storage.id
+//     location: location
+//   }
+// }
 
 output storage object = storage
